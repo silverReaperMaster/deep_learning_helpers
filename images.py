@@ -29,6 +29,7 @@ def show_images_comparator(img_array_1, img_array_2, img_scale=4):
     ax = fig.add_subplot(rows,2, 2*(img_index)+1)
     ax.imshow(img_array_1[img_index])
     ax.axis('off')
+    ax.set_title(f"index: {img_index}")
     ax2 = fig.add_subplot(rows,2, 2*(img_index)+2)
     ax2.imshow(img_array_2[img_index])
     ax2.axis('off')
