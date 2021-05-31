@@ -45,18 +45,21 @@ def display_history(_history):
   if "val_loss" in _history.history:
     ax1 = plt.plot(epochs,val_loss,label="validation loss")
   
+  # Notes
+  plt.annotate('- Overfiting if validation_loss does not decrease and loss does', (0,0), (0, -60), xycoords='axes fraction', textcoords='offset points', va='top')
   ax1 = plt.xlabel("epochs",fontsize=15)
   ax1= plt.legend()
 
   # Plot accuracy
   ax2 = fig.add_subplot(gs[0,1])
-  ax2.set_title("Accuracy",fontsize=30)
+  ax2.set_title("Accuracy", fontsize=30)
   ax2 = plt.plot(epochs,accuracy,label="accuracy")
   if "val_accuracy" in _history.history:
     ax2 = plt.plot(epochs,val_accuracy,label="validation accuracy")
-  
+   
   ax2 = plt.xlabel("epochs",fontsize=15)
   ax2= plt.legend()
+
 
 
 
@@ -69,15 +72,4 @@ def eval_details(_model,_X_eval,_y_eval):
 
 
 if __name__ == "__main__":
-  display_history({'accuracy': [0.5325000286102295,
-  0.5687500238418579,
-  0.5600000023841858,
-  0.574999988079071],
-
- 'loss': [0.6857874989509583,
-  0.6772280931472778,
-  0.6708468794822693,
-  0.6637807488441467
-  ]})
-
   print("Everything passed")
