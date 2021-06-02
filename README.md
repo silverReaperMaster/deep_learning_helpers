@@ -27,7 +27,9 @@ sys.path.append('/content/dl_helpers')
 ```
 
 ## Import and use 
+```python
 %autoreload 2
 from  history import display_history
 
 display_history(history_1)
+```
