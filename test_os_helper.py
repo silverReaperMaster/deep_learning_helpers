@@ -19,7 +19,6 @@ def download_files_to_test():
         os.makedirs('download/test_images')
         with zipfile.ZipFile('download/101_food_classes_10_percent.zip', 'r') as zip_ref:
             zip_ref.extractall('download/test_images/')
-    print('Downloaded Images')
 
 
 class TestOsHelper(TestCase):

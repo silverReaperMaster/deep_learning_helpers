@@ -10,7 +10,6 @@ def clean_files(files_array):
 #     # files = list(map(lambda: file_name: f"{_dir_path}/{_dir_name}/{file_name}",_file_names_array))
 #     return files
 
-
 def info_dir(_dir_path="./"):
     files_array = []
     for dir_path, dir_names, filenames in os.walk(_dir_path):
@@ -23,11 +22,3 @@ def info_dir(_dir_path="./"):
 
 if __name__ == '__main__':
     print("main")
-
-
-    # _food_classes_10_percent.zip
-    #
-    # unzip_data("101_food_classes_10_percent.zip")
-    #
-    # train_dir = "101_food_classes_10_percent/train/"
-    # test_dir = "101_food_classes_10_percent/test/"
