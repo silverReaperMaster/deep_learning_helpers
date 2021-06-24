@@ -1,10 +1,12 @@
 import os
+import sys
+import subprocess
+import pkg_resources
 
 
 def clean_files(files_array):
     r = list(filter(lambda x: x.find("DS") < 0, files_array))
     return r
-
 
 # def full_path_array(_dir_path, _dir_name, _file_names_array):
 #     # files = list(map(lambda: file_name: f"{_dir_path}/{_dir_name}/{file_name}",_file_names_array))
@@ -18,6 +20,14 @@ def info_dir(_dir_path="./"):
         files_array.extend(os.path.join(dir_path, x) for x in clean_files(filenames))
     print("\n\n")
     return files_array
+
+
+def required_packages(required={}):
+    installed = {pkg.key for pkg in pkg_resources.working_set}
+    missing = required - installed
+    if missing:
+        python = sys.executable
+        subprocess.check_call([python, '-m', 'pip', 'install', *missing], stdout=subprocess.DEVNULL)
 
 
 if __name__ == '__main__':
