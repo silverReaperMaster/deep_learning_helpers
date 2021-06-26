@@ -17,7 +17,7 @@ def show_images_comparator(img_array_1, img_array_2, img_scale=4):
     Lenght must be equal of the 2 arrays.
 
   """
-    if (len(img_array_1) != len(img_array_2)):
+    if len(img_array_1) != len(img_array_2):
         raise Exception("Length of array 1 and 2 not equal")
 
     rows = len(img_array_1)
