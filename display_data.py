@@ -17,8 +17,8 @@ def display_horizontal_bars(data: pd.DataFrame, name_column, value_column, fig_s
     ax.set_yticklabels(data[f"{name_column}"])
     ax.invert_yaxis()  # labels read top-to-bottom
 
-    ax.set_ylabel(f"{y_title}", labelpad=20, weight='bold', size=12)
-    ax.set_xlabel(f"{x_title}", labelpad=20, weight='bold', size=12)
-    ax.set_title(f"{title}", labelpad=20, weight='bold', size=20)
+    ax.set_ylabel(f"{y_title}", weight='bold', size=12)
+    ax.set_xlabel(f"{x_title}", weight='bold', size=12)
+    ax.set_title(f"{title}", weight='bold', size=20)
 
     plt.show()
