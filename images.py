@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-import matplotlib.gridspec as gridspec
 
 
 def display_image_from_file(_target_file, _title=""):
