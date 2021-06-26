@@ -3,8 +3,7 @@ import numpy as np
 import pandas as pd
 
 
-def display_horizontal_bars(data: pd.DataFrame, name_column, value_column, fig_size=(10, 10),
-                            y_title="Y title", x_title="X title", title="Title"):
+def display_horizontal_bars(data: pd.DataFrame, name_column, value_column, fig_size=(10, 10), title="Title"):
     plt.rcdefaults()
     fig, ax = plt.subplots(figsize=fig_size)
 
@@ -17,8 +16,8 @@ def display_horizontal_bars(data: pd.DataFrame, name_column, value_column, fig_s
     ax.set_yticklabels(data[f"{name_column}"])
     ax.invert_yaxis()  # labels read top-to-bottom
 
-    ax.set_ylabel(f"{y_title}", weight='bold', size=12)
-    ax.set_xlabel(f"{x_title}", weight='bold', size=12)
+    ax.set_ylabel(f"{name_column}", weight='bold', size=12)
+    ax.set_xlabel(f"{value_column}", weight='bold', size=12)
     ax.set_title(f"{title}", weight='bold', size=20)
 
     plt.show()
