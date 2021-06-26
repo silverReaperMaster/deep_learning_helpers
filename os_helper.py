@@ -26,7 +26,7 @@ def info_dir(_dir_path="./"):
     for dir_path, dir_names, filenames in os.walk(_dir_path):
         print(f"""There are {len(dir_names)} directories and \
         {len(clean_files_filter(filenames))} files in '{dir_path}'""")
-        files_array.extend(os.path.join(dir_path, x) for x in clean_files(filenames))
+        files_array.extend(os.path.join(dir_path, x) for x in clean_files_filter(filenames))
     print("\n\n")
     return files_array
 
