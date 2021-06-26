@@ -3,12 +3,19 @@ import numpy as np
 import pandas as pd
 
 
+def add_labels(x, y):
+    for i in range(len(x)):
+        plt.text(i, y[i], y[i], ha='center')
+
+
 def display_horizontal_bars(data: pd.DataFrame, name_column, value_column, fig_size=(10, 10), title="Title"):
     plt.rcdefaults()
     fig, ax = plt.subplots(figsize=fig_size)
 
     # Example data
     y_pos = np.arange(len(data))
+
+    add_labels(data[f"{value_column}"], y_pos)
 
     ax.barh(y_pos, data[f"{value_column}"], align='center')
     ax.set_yticks(y_pos)
