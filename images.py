@@ -1,14 +1,31 @@
+import numpy
 import matplotlib.pyplot as plt
+import matplotlib.ticker as tic
+import math
 import matplotlib.image as mpimg
 
+def display_image_from_file(_target_files, _title="", _y_title="", _fig_size=(10,10), _columns=1):
+    if isinstance(_target_files,str):
+      img = mpimg.imread(_target_files)
+      plt.imshow(img)
+      plt.title(_title)
+      plt.axis("off")
+      return img
 
-def display_image_from_file(_target_file, _title=""):
-    img = mpimg.imread(_target_file)
-    plt.imshow(img)
-    plt.title(_title)
-    plt.axis("off")
-    print(f"Image shape:{img.shape}")
-    return img
+    if isinstance(_target_files, numpy.ndarray):
+      print("Array")
+      fig = plt.figure(figsize=_fig_size, constrained_layout=True)
+      gs = fig.add_gridspec(ncols=_columns,nrows=math.ceil(len(_target_files)/_columns), hspace=0, wspace=0)
+      for i in range(len(_target_files)):
+        img = mpimg.imread(_target_files[i])
+        ax = fig.add_subplot(gs[math.floor(i/_columns),i%_columns])
+        ax.imshow(img)
+        ax.set(title=f"{_title[i]}", ylabel=f"{_y_title[i]}")
+        plt.setp(ax.get_xticklabels(), visible=False)
+        plt.setp(ax.get_yticklabels(), visible=False)
+
+      plt.show()
+
 
 
 def show_images_comparator(img_array_1, img_array_2, img_scale=4):
