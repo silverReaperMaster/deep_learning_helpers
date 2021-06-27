@@ -8,13 +8,13 @@ import numpy
 
 def get_title(title, index=None):
     if isinstance(title, numpy.ndarray):
-        return (f"{title[index]}")
+        return f"{title[index]}"
 
     if isinstance(title, list):
-        return (f"{title[index]}")
+        return f"{title[index]}"
 
     if isinstance(title, str):
-        return (f"{title}")
+        return f"{title}"
 
     return "Missing"
 
