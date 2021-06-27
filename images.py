@@ -30,6 +30,8 @@ def display_image(_target_image, _title="", _y_title="", _fig_size=(10, 10), _co
             ax.set_title(f"{get_title(_title, i)}")
             plt.setp(ax.get_xticklabels(), visible=False)
             plt.setp(ax.get_yticklabels(), visible=False)
+            ax.set_xticks([])
+            ax.set_yticks([])
         plt.show()
 
     if isinstance(_target_image, numpy.ndarray):
@@ -39,7 +41,7 @@ def display_image(_target_image, _title="", _y_title="", _fig_size=(10, 10), _co
             ax = fig.add_subplot(gs[math.floor(i / _columns), i % _columns])
             v = _target_image[i]
             ax.imshow(v)
-            set_title(ax, _title, i)
+            ax.set_title(f"{get_title(_title, i)}")
             plt.setp(ax.get_xticklabels(), visible=False)
             plt.setp(ax.get_yticklabels(), visible=False)
         plt.show()
