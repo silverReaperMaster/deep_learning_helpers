@@ -6,23 +6,39 @@ import matplotlib.image as mpimg
 import numpy
 
 
-def set_title(ax, title, index=None):
+def get_title(title, index=None):
     if isinstance(title, numpy.ndarray):
-        print("Seting Title")
-        ax.set(title=f"{title[index]}")
+        return (f"{title[index]}")
+
+    if isinstance(title, list):
+        return (f"{title[index]}")
 
     if isinstance(title, str):
-        ax.set(title=f"{title}")
+        return (f"{title}")
+
+    return "Missing"
 
 
 def display_image(_target_image, _title="", _y_title="", _fig_size=(10, 10), _columns=1):
-    if isinstance(_target_image, numpy.ndarray) and len(_target_image.shape) == 4:
+    if isinstance(_target_image, tf.data.Dataset):
         fig = plt.figure(figsize=_fig_size, constrained_layout=True)
         gs = fig.add_gridspec(ncols=_columns, nrows=math.ceil(len(_target_image) / _columns), hspace=0, wspace=0)
-        print(len(_target_image))
+
+        for i, (image, label) in enumerate(_target_image):
+            ax = fig.add_subplot(gs[math.floor(i / _columns), i % _columns])
+            ax.imshow(image)
+            ax.set_title(f"{get_title(_title, i)}")
+            plt.setp(ax.get_xticklabels(), visible=False)
+            plt.setp(ax.get_yticklabels(), visible=False)
+        plt.show()
+
+    if isinstance(_target_image, numpy.ndarray):
+        fig = plt.figure(figsize=_fig_size, constrained_layout=True)
+        gs = fig.add_gridspec(ncols=_columns, nrows=math.ceil(len(_target_image) / _columns), hspace=0, wspace=0)
         for i in range(len(_target_image)):
             ax = fig.add_subplot(gs[math.floor(i / _columns), i % _columns])
-            ax.imshow(_target_image[i])
+            v = _target_image[i]
+            ax.imshow(v)
             set_title(ax, _title, i)
             plt.setp(ax.get_xticklabels(), visible=False)
             plt.setp(ax.get_yticklabels(), visible=False)
