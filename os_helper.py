@@ -22,12 +22,19 @@ def clean_gpu_name(_gpu_result_str):
 def check_hw():
     gpu_params = ["name"]
     command_out = subprocess.run(["nvidia-smi",
-                                  f"--query-gpu={','.join(gpu_params)}", "--format=csv"],
-                                 stdout=subprocess.PIPE,
-                                 text=True, input="")
+      f"--query-gpu={','.join(gpu_params)}", "--format=csv"],
+      stdout=subprocess.PIPE,
+      text=True, input="")
+
+    if "NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver" in command_out.stdout:
+      print ("NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver")
+      return
+
     command_str_io = StringIO(command_out.stdout)
+    # print(command_out.stdout)
     command_out_results = pd.read_csv(command_str_io, sep=",")
     # print(command_out_results.head())
+   
     gpu_name = clean_gpu_name(command_out_results['name'].iloc[0])
 
     url = "https://developer.nvidia.com/cuda-gpus#compute"
