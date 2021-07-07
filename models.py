@@ -28,6 +28,7 @@ def add_model_to_compare(orig , name, add):
 
 def graf_models_comparer(complete_results = {}):
   fig = plt.figure(figsize=(8, 4))
+
   ax = fig.add_subplot(111)
 
   models = complete_results.items()
@@ -37,7 +38,7 @@ def graf_models_comparer(complete_results = {}):
   precision = []
   rect_recall = []
   names = []
-  width = 0.10
+  width = 0.15
   
 
   for index,(name,values) in enumerate(complete_results.items()):
@@ -59,15 +60,18 @@ def graf_models_comparer(complete_results = {}):
   fmt = '%.0f%%' # Format you want the ticks, e.g. '40%'
   yticks = mtick.FormatStrFormatter(fmt)
   ax.yaxis.set_major_formatter(yticks)
-  ax.set_ylim([0, 100])
+  ax.set_ylim([0, 130])
   ax.set_xticks(ind)
   ax.set_xticklabels(names)
   ax.legend()
+
 
   autolabel(rects_acc,ax)
   autolabel(rects_f1,ax)
   autolabel(rect_precission,ax)
   autolabel(rect_recall,ax)
+  plt.tight_layout()
+  plt.show()
 
 def autolabel(rects,ax):
     for rect in rects:
