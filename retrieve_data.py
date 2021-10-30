@@ -33,7 +33,7 @@ def get_zipped_content_url(_zip_url, _destiny_path, force_update=False):
 
 def download(_url, _destiny_folder, force_update=False):
     _file_name = _url.split("/")[-1]
-    full_path = f"{__complete_path(_destiny_folder)}{_file_name}"
+    full_path = f"{__complete_path(_destiny_folder)}{_file_name[0:10]}"
 
     # If folder doesn't exist, then create it.
     if not os.path.isdir(_destiny_folder):
