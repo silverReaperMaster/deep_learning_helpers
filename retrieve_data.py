@@ -28,7 +28,8 @@ def get_zipped_content_url(_zip_url, _destiny_path, force_update=False):
                 pass
     zf.close()
     macosx = f"{_destiny_path}__MACOSX"
-    shutil.rmtree(f"{macosx}")
+    if os.path.exists(f"{macosx}") and os.path.isdir(f"{macosx}"):
+        shutil.rmtree(f"{macosx}")
 
 
 def download(_url, _destiny_folder, force_update=False):
